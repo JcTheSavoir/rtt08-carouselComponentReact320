@@ -12,27 +12,29 @@ function App() {
 // ---(var)----(functionToUpdate var)----------------default val for var
 
 const changePic = () => {
-  if (count === 6) {
-    setCount(count = 0)
-  } else {
-    setCount(count += 1)
-  }
-    setCurrentImage(photos[count])
-    console.log("Current Image: ", currentImage);
-    console.log("Current Count: ", count);
-    // ---> [ [0], [1], [2] ]
-  }
+  setCount((prevCount) => {
+    const newCount = prevCount + 1;
+    if (newCount >= photos.length) {
+      // Reset count to 0 if it goes beyond the array length
+      return 0;
+    }
+    return newCount;
+  });
+  setCurrentImage(photos[count]);
+  // ---> [ [0], [1], [2] ]
+};
   //---> Cycle forwared through our array of pics
 
-  const reversePic =() => {
-    if (count === 0) {
-      setCount(count = 6)
-    } else {
-    setCount(count -= 1)
-    }
-    console.log("Current Count: ", count);
-    setCurrentImage(photos[count])
-    console.log("Current Image: ", currentImage);
+  const reversePic = () => {
+    setCount((prevCount) => {
+      const newCount = prevCount - 1;
+      if (newCount < 0) {
+        // Reset count to the last index if it goes below 0
+        return photos.length - 1;
+      }
+      return newCount;
+    });
+    setCurrentImage(photos[count]);
   };
   // ----> Cycle BACKWARDS through our array of pics
 
