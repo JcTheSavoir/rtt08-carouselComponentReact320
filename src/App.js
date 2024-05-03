@@ -4,6 +4,7 @@ import {photos} from './models/photos'
 import { symbols } from './models/symbols';
 import Button from './components/Button';
 import Card from './components/Card';
+
 function App() {
 
   let [count, setCount] = useState(0)
